@@ -51,4 +51,14 @@ class User extends Authenticatable
     {
         return $query->whereHas('aluno');
     }
+
+    public function homologador()
+    {
+        return $this->hasOne(Homologador::class, 'id');
+    }
+
+    public function scopeIsHomologador($query)
+    {
+        return $query->whereHas('homologador');
+    }
 }
