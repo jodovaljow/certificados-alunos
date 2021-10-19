@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function aluno()
+    {
+        return $this->hasOne(Aluno::class, 'id');
+    }
+
+    public function scopeIsAluno($query)
+    {
+        return $query->whereHas('aluno');
+    }
 }

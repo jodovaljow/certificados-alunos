@@ -10,10 +10,10 @@ class LoginTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $seeder = UserSeeder::class;
-
     public function testSeeder()
     {
+        $this->seed(UserSeeder::class);
+
         $this->assertDatabaseCount('users', 51);
 
         $this->assertDatabaseHas('users', [
@@ -26,6 +26,8 @@ class LoginTest extends TestCase
      */
     public function testLogin($email, $password, $expected)
     {
+        $this->seed(UserSeeder::class);
+
         $response = $this->post(
             '/api/login',
             [
@@ -35,6 +37,12 @@ class LoginTest extends TestCase
         );
 
         $response->assertStatus($expected);
+
+        if ($expected == 200) {
+            $this->assertAuthenticated();
+        } else {
+            $this->assertGuest();
+        }
     }
 
     public function loginProvider()
