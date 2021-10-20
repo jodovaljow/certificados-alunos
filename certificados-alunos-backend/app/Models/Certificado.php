@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Certificado extends Model
+{
+    use HasFactory;
+
+    public $timestamps = false;
+
+    public function aluno()
+    {
+        return $this->belongsTo(Aluno::class);
+    }
+
+    public function tipo_certificado()
+    {
+        return $this->belongsTo(TipoCertificado::class, 'tipo_certificado_id');
+    }
+}

@@ -12,4 +12,9 @@ class TipoCertificado extends Model
     protected $table = 'tipos_certificados';
 
     public $timestamps = false;
+
+    public function certificados()
+    {
+        return $this->hasMany(Certificado::class, 'tipo_certificado_id');
+    }
 }

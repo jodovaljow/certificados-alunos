@@ -3,9 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Aluno;
-use App\Models\User;
-use Database\Seeders\AlunoSeeder;
-use Database\Seeders\TipoCertificadoSeeder;
+use Database\Seeders\CertificadoSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -15,13 +13,11 @@ class CertificadoTest extends TestCase
 
     public function testSeeder()
     {
-        $this->seed(TipoCertificadoSeeder::class);
+        $this->seed(CertificadoSeeder::class);
 
-        $this->assertDatabaseCount('tipos_certificados', 3);
+        $this->assertDatabaseCount('certificados', 60);
 
-        $this->assertDatabaseHas('tipos_certificados', ['tipo' => 'pesquisa']);
-        $this->assertDatabaseHas('tipos_certificados', ['tipo' => 'ensino']);
-        $this->assertDatabaseHas('tipos_certificados', ['tipo' => 'extensão']);
-        $this->assertDatabaseMissing('tipos_certificados', ['tipo' => 'away']);
+        $certificadosJowAluno = Aluno::with('certificados')->whereRelation('user', 'email', 'jowaluno@unit.br')->first();
+        $this->assertCount(10, $certificadosJowAluno->certificados);
     }
 }
