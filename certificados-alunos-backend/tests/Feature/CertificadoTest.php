@@ -15,9 +15,9 @@ class CertificadoTest extends TestCase
     {
         $this->seed(CertificadoSeeder::class);
 
-        $this->assertDatabaseCount('certificados', 60);
+        $this->assertDatabaseCount('certificados', 66);
 
         $certificadosJowAluno = Aluno::with('certificados')->whereRelation('user', 'email', 'jowaluno@unit.br')->first();
-        $this->assertCount(10, $certificadosJowAluno->certificados);
+        $this->assertCount(16, $certificadosJowAluno->certificados);
     }
 }

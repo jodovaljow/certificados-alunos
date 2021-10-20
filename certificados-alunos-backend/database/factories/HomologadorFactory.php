@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Homologador;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class HomologadorFactory extends Factory
@@ -24,5 +25,19 @@ class HomologadorFactory extends Factory
         return [
             //
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterMaking(function (Homologador $homologador) {
+
+            if (!$homologador->user) {
+
+                $user = User::factory()->create();
+
+                $homologador->user()->associate($user);
+            }
+        })->afterCreating(function (Homologador $homologador) {
+        });
     }
 }

@@ -19,4 +19,9 @@ class Homologador extends Model
     {
         return $this->belongsTo(User::class, 'id');
     }
+
+    public function homologacoes()
+    {
+        return $this->hasMany(Homologacao::class);
+    }
 }

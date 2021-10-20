@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Homologador;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -14,7 +15,7 @@ class HomologadorSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(50)->hasHomologador()->create();
+        Homologador::factory(50)->create();
 
         User::factory()->hasHomologador()->create([
             'email' => 'jowhomologador@unit.br',

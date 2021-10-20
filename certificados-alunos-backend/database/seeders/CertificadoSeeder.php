@@ -24,7 +24,7 @@ class CertificadoSeeder extends Seeder
 
         User::factory()->has(
             Aluno::factory()->has(
-                Certificado::factory(10)
+                Certificado::factory(16)
             )
         )->create([
             'email' => 'jowaluno@unit.br',
