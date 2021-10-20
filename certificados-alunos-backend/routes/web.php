@@ -18,4 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/api/login', [LoginController::class, 'login']);
+
+Route::prefix('api')->group(function () {
+
+    Route::post('login', [LoginController::class, 'login']);
+});
