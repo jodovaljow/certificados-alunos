@@ -23,6 +23,7 @@ class CreateHomologacoesTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignId('certificado_id')
+                ->unique()
                 ->constrained('certificados')
                 ->unique()
                 ->onUpdate('cascade')
