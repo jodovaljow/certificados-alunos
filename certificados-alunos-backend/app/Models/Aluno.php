@@ -22,4 +22,9 @@ class Aluno extends Model
     {
         return $this->hasMany(Certificado::class);
     }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->with(['certificados.homologacao', 'certificados.tipo_certificado', 'user'])->findOrFail($value);
+    }
 }

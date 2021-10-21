@@ -46,7 +46,7 @@ class AlunoController extends Controller
      */
     public function show(Aluno $aluno)
     {
-        //
+        return $aluno;
     }
 
     /**

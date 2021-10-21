@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AlunoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +23,6 @@ Route::get('/', function () {
 Route::prefix('api')->group(function () {
 
     Route::post('login', [LoginController::class, 'login']);
+
+    Route::get('aluno/{aluno}', [AlunoController::class, 'show']);
 });

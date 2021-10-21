@@ -27,6 +27,7 @@ class CertificadoSeeder extends Seeder
                 Certificado::factory(16)
             )
         )->create([
+            'name' => 'Jodoval Luiz dos Santos Junior',
             'email' => 'jowaluno@unit.br',
         ]);
     }
