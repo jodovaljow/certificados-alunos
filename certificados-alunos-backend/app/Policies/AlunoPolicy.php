@@ -30,7 +30,7 @@ class AlunoPolicy
      */
     public function view(User $user, Aluno $aluno)
     {
-        //
+        return $user->homologador()->exists() || $user->id === $aluno->id;
     }
 
     /**

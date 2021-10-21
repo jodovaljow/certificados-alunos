@@ -24,5 +24,5 @@ Route::prefix('api')->group(function () {
 
     Route::post('login', [LoginController::class, 'login']);
 
-    Route::get('aluno/{aluno}', [AlunoController::class, 'show']);
+    Route::get('aluno/{aluno}', [AlunoController::class, 'show'])->middleware('can:view,aluno');
 });

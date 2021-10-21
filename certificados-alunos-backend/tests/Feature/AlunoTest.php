@@ -35,7 +35,7 @@ class AlunoTest extends TestCase
 
         $aluno = Aluno::whereRelation('user', 'email', 'jowaluno@unit.br')->first();
 
-        $response = $this->get('/api/aluno/' . $aluno->id);
+        $response = $this->actingAs($aluno->user)->get('/api/aluno/' . $aluno->id);
 
         $response->assertStatus(200);
         $response->assertJson([
