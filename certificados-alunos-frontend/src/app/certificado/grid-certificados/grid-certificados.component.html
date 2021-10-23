@@ -1,0 +1,71 @@
+<ng-container *ngIf="alunoSelecionado$ | async; let alunoSelecionado">
+
+    <mat-card>
+
+        <mat-card-title>Certificados Enviados</mat-card-title>
+        <mat-card-subtitle>{{alunoSelecionado.user.name}} - {{alunoSelecionado.user.email}}</mat-card-subtitle>
+        <mat-card-subtitle>
+
+            <ng-container *ngIf="totalHorasHomologadas$|async; let totalHorasHomologadas; else semHorasHomologadas">
+
+                total de horas homologadas: {{totalHorasHomologadas}}
+            </ng-container>
+            <ng-template #semHorasHomologadas>
+
+                sem horas homologadas!
+            </ng-template>
+        </mat-card-subtitle>
+
+        <mat-card-content>
+
+            <table mat-table [dataSource]="alunoSelecionado.certificados" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="nome">
+                    <th mat-header-cell *matHeaderCellDef>
+                        Certificado </th>
+                    <td mat-cell *matCellDef="let element">
+
+                        <a href="api/certificado/{{element.id}}" target="_blank" rel="noopener noreferrer">
+
+                            {{element.nome}}
+                        </a>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="horas">
+                    <th mat-header-cell *matHeaderCellDef> Horas </th>
+                    <td mat-cell *matCellDef="let element"> {{element.horas}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="tipo">
+                    <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                    <td mat-cell *matCellDef="let element"> {{element.tipo_certificado.tipo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element">
+
+                        <ng-container *ngIf="element.homologacao; else naoIniciado">
+
+                            <span class="status" class="{{element.homologacao.status}}">
+
+                                {{element.homologacao.status}}
+                            </span>
+                        </ng-container>
+                        <ng-template #naoIniciado>
+
+                            <span class="status naoIniciado">
+
+                                será iniciado
+                            </span>
+                        </ng-template>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+</ng-container>
