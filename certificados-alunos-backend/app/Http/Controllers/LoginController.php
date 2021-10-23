@@ -18,9 +18,9 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return Response('ok', 200);
+            return Response('', 200);
         }
 
-        return Response('error', 403);
+        return Response('', 403);
     }
 }
