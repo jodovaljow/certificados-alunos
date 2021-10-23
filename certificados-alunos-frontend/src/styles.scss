@@ -10,3 +10,21 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+@import "~@angular/material/theming";
+
+$primaryPalette: mat-palette($mat-indigo);
+$successPalette: mat-palette($mat-green);
+$dangerPalette: mat-palette($mat-red);
+
+.bg-primary {
+  background-color: mat-color($primaryPalette);
+}
+
+.bg-success {
+  background-color: mat-color($successPalette);
+}
+
+.bg-danger {
+  background-color: mat-color($dangerPalette);
+}
