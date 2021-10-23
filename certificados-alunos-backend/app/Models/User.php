@@ -61,4 +61,14 @@ class User extends Authenticatable
     {
         return $query->whereHas('homologador');
     }
+
+    public function getIsAlunoAttribute($value)
+    {
+        return $this->aluno()->exists();
+    }
+
+    public function getIsHomologadorAttribute($value)
+    {
+        return $this->homologador()->exists();
+    }
 }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CertificadoController;
+use App\Http\Controllers\MeController;
 use App\Models\Certificado;
 
 /*
@@ -25,6 +26,8 @@ Route::get('/', function () {
 Route::prefix('api')->group(function () {
 
     Route::post('login', [LoginController::class, 'login']);
+
+    Route::any('me', MeController::class)->middleware(['api', 'web'])->name('me');
 
     Route::get('aluno/{aluno}', [AlunoController::class, 'show'])->middleware('can:view,aluno');
 
