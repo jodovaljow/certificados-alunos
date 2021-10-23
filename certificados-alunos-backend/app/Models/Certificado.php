@@ -12,6 +12,12 @@ class Certificado extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'nome',
+        'horas',
+        'path',
+    ];
+
     public function aluno()
     {
         return $this->belongsTo(Aluno::class);

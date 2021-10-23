@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Certificado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Certificado;
+use App\Models\TipoCertificado;
 
 class CertificadoController extends Controller
 {
@@ -35,7 +37,30 @@ class CertificadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'certificado' => 'required|file',
+            'nome' => 'required|string',
+            'horas' => 'required|numeric|gte:1',
+            'tipo_certificado' => 'required|exists:tipos_certificados,tipo',
+        ]);
+
+        $path = $request->file('certificado')->store('');
+
+        $certificado = Certificado::make(
+            [
+                'nome' => $validated['nome'],
+                'horas' => $validated['horas'],
+                'path' => $path,
+            ],
+        );
+
+        $aluno = Auth::user()->aluno;
+        $certificado->aluno()->associate($aluno);
+
+        $tipo_certificado = TipoCertificado::where('tipo', $validated['tipo_certificado'])->first();
+        $certificado->tipo_certificado()->associate($tipo_certificado);
+
+        $certificado->save();
     }
 
     /**

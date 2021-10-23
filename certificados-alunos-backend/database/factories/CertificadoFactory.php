@@ -26,6 +26,7 @@ class CertificadoFactory extends Factory
         return [
             'nome' => $this->faker->sentence(),
             'horas' => $this->faker->numberBetween(1, 360),
+            'path' => $this->faker->md5() . '.' . $this->faker->fileExtension(),
         ];
     }
 

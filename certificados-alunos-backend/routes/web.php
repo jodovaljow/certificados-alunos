@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\CertificadoController;
+use App\Models\Certificado;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +27,9 @@ Route::prefix('api')->group(function () {
     Route::post('login', [LoginController::class, 'login']);
 
     Route::get('aluno/{aluno}', [AlunoController::class, 'show'])->middleware('can:view,aluno');
+
+    Route::prefix('certificado')->group(function () {
+
+        Route::post('', [CertificadoController::class, 'store'])->middleware(['api', 'web', 'can:create,' . Certificado::class]);
+    });
 });

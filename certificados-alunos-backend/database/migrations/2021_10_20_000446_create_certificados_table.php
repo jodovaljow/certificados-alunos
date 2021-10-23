@@ -17,6 +17,7 @@ class CreateCertificadosTable extends Migration
             $table->id();
             $table->string('nome');
             $table->unsignedSmallInteger('horas');
+            $table->string('path');
             $table->foreignId('aluno_id')
                 ->constrained('alunos')
                 ->onUpdate('cascade')
