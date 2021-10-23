@@ -1,0 +1,21 @@
+<form [formGroup]="loginForm" class="d-flex fullview bg-primary" (ngSubmit)="onSubmit()">
+
+    <mat-card>
+        <mat-card-title>Sistema de Certificados</mat-card-title>
+
+        <mat-form-field appearance="fill" class="d-block">
+            <mat-label>Login</mat-label>
+            <input matInput autocomplete="username email" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="d-block">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput autocomplete="current-password" formControlName="password">
+        </mat-form-field>
+
+        <mat-card-actions>
+            <button mat-button mat-raised-button class="w-100" color="accent" type="submit"
+                [disabled]="!loginForm.valid">login</button>
+        </mat-card-actions>
+    </mat-card>
+</form>
