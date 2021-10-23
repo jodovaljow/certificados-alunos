@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { User } from './types';
@@ -26,16 +26,17 @@ export class AuthService {
   ) { }
 
 
-  login(credentials: { email: string, password: string }) {
+  login(credentials: { email: string, password: string }): Observable<User> {
 
-    this.httpClient.post<User>(environment.url_backend + '/login',
+    return this.httpClient.post<User>(environment.url_backend + '/login',
       {
         email: credentials.email,
         password: credentials.password,
       }, { withCredentials: true })
-      .subscribe(
-        user => this.user$.next(user),
-        erro => this.user$.next(null),
+      .pipe(
+        tap(
+          user => this.user$.next(user),
+        )
       )
   }
 }
