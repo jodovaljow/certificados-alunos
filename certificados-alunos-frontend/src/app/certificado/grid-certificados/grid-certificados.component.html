@@ -1,6 +1,6 @@
 <ng-container *ngIf="alunoSelecionado$ | async; let alunoSelecionado">
 
-    <mat-card>
+    <mat-card class="mat-elevation-z8">
 
         <mat-card-title>Certificados Enviados</mat-card-title>
         <mat-card-subtitle>{{alunoSelecionado.user.name}} - {{alunoSelecionado.user.email}}</mat-card-subtitle>
@@ -18,7 +18,7 @@
 
         <mat-card-content>
 
-            <table mat-table [dataSource]="alunoSelecionado.certificados" class="mat-elevation-z8">
+            <table mat-table [dataSource]="alunoSelecionado.certificados">
 
                 <ng-container matColumnDef="nome">
                     <th mat-header-cell *matHeaderCellDef>
