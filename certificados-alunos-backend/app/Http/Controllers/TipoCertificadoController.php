@@ -14,7 +14,7 @@ class TipoCertificadoController extends Controller
      */
     public function index()
     {
-        //
+        return TipoCertificado::orderBy('tipo')->get();
     }
 
     /**

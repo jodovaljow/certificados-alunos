@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CertificadoController;
 use App\Http\Controllers\MeController;
+use App\Http\Controllers\TipoCertificadoController;
 use App\Models\Certificado;
 
 /*
@@ -32,6 +33,8 @@ Route::prefix('api')->group(function () {
     Route::any('me', MeController::class)->middleware(['api', 'web'])->name('me');
 
     Route::get('aluno/{aluno}', [AlunoController::class, 'show'])->middleware('can:view,aluno');
+
+    Route::get('tipos', [TipoCertificadoController::class, 'index']);
 
     Route::prefix('certificado')->group(function () {
 
