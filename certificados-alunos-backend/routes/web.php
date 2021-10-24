@@ -41,5 +41,7 @@ Route::prefix('api')->group(function () {
     Route::prefix('certificado')->group(function () {
 
         Route::post('', [CertificadoController::class, 'store'])->middleware(['api', 'web', 'can:create,' . Certificado::class]);
+        Route::get('{certificado}', [CertificadoController::class, 'show'])->middleware('can:view,certificado');
+        Route::get('{certificado}/detail', [CertificadoController::class, 'showDetail'])->middleware('can:view,certificado');
     });
 });

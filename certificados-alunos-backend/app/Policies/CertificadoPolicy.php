@@ -30,7 +30,7 @@ class CertificadoPolicy
      */
     public function view(User $user, Certificado $certificado)
     {
-        //
+        return $user->homologador()->exists() || $user->id === $certificado->aluno->id;
     }
 
     /**

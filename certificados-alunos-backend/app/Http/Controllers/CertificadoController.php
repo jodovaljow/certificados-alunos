@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Certificado;
 use App\Models\TipoCertificado;
+use Illuminate\Support\Facades\Storage;
 
 class CertificadoController extends Controller
 {
@@ -71,7 +72,21 @@ class CertificadoController extends Controller
      */
     public function show(Certificado $certificado)
     {
-        //
+        $arrayNameFile = explode('.', $certificado->path);
+        $extension = end($arrayNameFile);
+
+        return Storage::download(
+            $certificado->path,
+            $certificado->nome . '.' . $extension,
+            [
+                'Content-Disposition' => 'inline; filename="myfile.txt"'
+            ]
+        );
+    }
+
+    public function showDetail(Certificado $certificado)
+    {
+        return $certificado;
     }
 
     /**
