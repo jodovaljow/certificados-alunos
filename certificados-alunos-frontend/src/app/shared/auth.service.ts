@@ -25,7 +25,6 @@ export class AuthService {
     private httpClient: HttpClient,
   ) { }
 
-
   login(credentials: { email: string, password: string }): Observable<User> {
 
     return this.httpClient.post<User>(environment.url_backend + '/login',
@@ -36,6 +35,28 @@ export class AuthService {
       .pipe(
         tap(
           user => this.user$.next(user),
+        )
+      )
+  }
+
+  info(): Observable<User> {
+
+    return this.httpClient.get<User>(environment.url_backend + '/me',
+      { withCredentials: true })
+      .pipe(
+        tap(
+          user => this.user$.next(user),
+        )
+      )
+  }
+
+  logout(): Observable<any> {
+
+    return this.httpClient.delete(environment.url_backend + '/login',
+      { withCredentials: true })
+      .pipe(
+        tap(
+          () => this.user$.next(null),
         )
       )
   }
