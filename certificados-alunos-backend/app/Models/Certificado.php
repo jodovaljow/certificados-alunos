@@ -53,4 +53,9 @@ class Certificado extends Model
             $query->isNegado();
         });
     }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->with(['aluno.user', 'homologacao', 'tipo_certificado'])->findOrFail($value);
+    }
 }
