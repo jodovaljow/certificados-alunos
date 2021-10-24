@@ -28,3 +28,39 @@ $dangerPalette: mat-palette($mat-red);
 .bg-danger {
   background-color: mat-color($dangerPalette);
 }
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-around {
+  justify-content: space-around;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-fill {
+  flex: 1 1 auto !important;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.p-0 {
+  padding: 0rem !important;
+}
+
+.p-1 {
+  padding: 0.25rem !important;
+}
+
+.p-2 {
+  padding: 0.25rem !important;
+}
