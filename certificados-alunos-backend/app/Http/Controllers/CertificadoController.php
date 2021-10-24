@@ -72,6 +72,9 @@ class CertificadoController extends Controller
      */
     public function show(Certificado $certificado)
     {
+        if (Storage::missing($certificado->path))
+            return Response('<h4 style="color:red;text-align: center;">Certificado não encontrado!</h4>', 404);
+
         $arrayNameFile = explode('.', $certificado->path);
         $extension = end($arrayNameFile);
 
