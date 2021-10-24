@@ -34,7 +34,16 @@
 
                 <ng-container matColumnDef="horas">
                     <th mat-header-cell *matHeaderCellDef> Horas </th>
-                    <td mat-cell *matCellDef="let element"> {{element.horas}} </td>
+                    <td mat-cell *matCellDef="let element">
+
+                        {{element.horas}}
+
+                        <span class="status iniciado"
+                            *ngIf="element.homologacao && element.homologacao.horas!=element.horas && element.homologacao.status==='homologado'">
+
+                            homologado-> {{element.homologacao.horas}}
+                        </span>
+                    </td>
                 </ng-container>
 
                 <ng-container matColumnDef="tipo">
