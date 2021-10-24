@@ -10,23 +10,28 @@ import { Aluno } from 'src/app/shared/types';
 })
 export class GridCertificadosService {
 
-  alunoSelecionado$ = new BehaviorSubject<Aluno | null>(null)
+  alunoExibindo$ = new BehaviorSubject<Aluno | null>(null)
 
   constructor(
     private httpClient: HttpClient,
   ) { }
 
-  carregarAluno(idAluno: number | null) {
+  carregarAluno(idAluno: number | null | undefined) {
 
     if (!idAluno) {
 
-      this.alunoSelecionado$.next(null)
+      this.alunoExibindo$.next(null)
       return
     }
 
     this.httpClient.get<Aluno>(environment.url_backend + '/aluno/' + idAluno, { withCredentials: true })
       .subscribe(
-        aluno => this.alunoSelecionado$.next(aluno)
+        aluno => this.alunoExibindo$.next(aluno)
       )
+  }
+
+  recarregarAluno() {
+
+    this.carregarAluno(this.alunoExibindo$.value?.id)
   }
 }

@@ -15,9 +15,9 @@ export class GridCertificadosComponent implements OnInit {
   @Input() isHomologador: boolean | null = false
 
   displayedColumns: string[] = ['nome', 'horas', 'tipo', 'status']
-  alunoSelecionado$ = this.gridCertificadosService.alunoSelecionado$
+  alunoExibindo$ = this.gridCertificadosService.alunoExibindo$
 
-  totalHorasHomologadas$: Observable<number> = this.alunoSelecionado$
+  totalHorasHomologadas$: Observable<number> = this.alunoExibindo$
     .pipe(
       map(
         aluno => {
