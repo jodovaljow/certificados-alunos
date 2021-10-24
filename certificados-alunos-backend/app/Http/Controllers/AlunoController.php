@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
@@ -15,6 +16,19 @@ class AlunoController extends Controller
     public function index()
     {
         //
+    }
+
+    public function query(Request $request)
+    {
+        if (!$request->filled('query')) {
+
+            return [];
+        }
+
+        $query = $request->input('query');
+
+        $query = '%' . str_replace(' ', '%', $query) . '%';
+        return  User::where('name', 'ilike', $query)->orWhere('email', 'ilike', $query)->isAluno()->limit(25)->get();
     }
 
     /**

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Access\Response;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('is-homologador', function (User $user) {
+            return $user->is_homologador
+                ? Response::allow()
+                : Response::deny('Somente homologador.');
+        });
     }
 }

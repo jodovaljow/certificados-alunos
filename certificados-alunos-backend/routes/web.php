@@ -26,6 +26,8 @@ Route::get('/', function () {
 
 Route::prefix('api')->group(function () {
 
+    Route::get('query/aluno', [AlunoController::class, 'query'])->middleware('can:is-homologador');
+
     Route::post('login', [LoginController::class, 'login']);
 
     Route::delete('login', [LoginController::class, 'logout']);
