@@ -32,4 +32,13 @@ class LoginController extends Controller
 
         return Response('', 403);
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+    }
 }

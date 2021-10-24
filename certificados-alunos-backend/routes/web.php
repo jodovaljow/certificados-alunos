@@ -27,6 +27,8 @@ Route::prefix('api')->group(function () {
 
     Route::post('login', [LoginController::class, 'login']);
 
+    Route::delete('login', [LoginController::class, 'logout']);
+
     Route::any('me', MeController::class)->middleware(['api', 'web'])->name('me');
 
     Route::get('aluno/{aluno}', [AlunoController::class, 'show'])->middleware('can:view,aluno');
