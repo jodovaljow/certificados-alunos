@@ -16,7 +16,13 @@ export class GridCertificadosService {
     private httpClient: HttpClient,
   ) { }
 
-  selecionarAluno(idAluno: number) {
+  carregarAluno(idAluno: number | null) {
+
+    if (!idAluno) {
+
+      this.alunoSelecionado$.next(null)
+      return
+    }
 
     this.httpClient.get<Aluno>(environment.url_backend + '/aluno/' + idAluno, { withCredentials: true })
       .subscribe(

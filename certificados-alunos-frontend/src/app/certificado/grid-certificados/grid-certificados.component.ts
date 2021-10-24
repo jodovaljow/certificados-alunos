@@ -11,7 +11,7 @@ import { GridCertificadosService } from './grid-certificados.service';
 })
 export class GridCertificadosComponent implements OnInit {
 
-  @Input() idAluno: number = 0
+  @Input() idAluno: number | null = 0
   @Input() isHomologador: boolean | null = false
 
   displayedColumns: string[] = ['nome', 'horas', 'tipo', 'status']
@@ -39,7 +39,6 @@ export class GridCertificadosComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    if (this.idAluno)
-      this.gridCertificadosService.selecionarAluno(this.idAluno)
+    this.gridCertificadosService.carregarAluno(this.idAluno)
   }
 }
