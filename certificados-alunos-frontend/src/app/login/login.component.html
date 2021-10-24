@@ -17,5 +17,9 @@
             <button mat-button mat-raised-button class="w-100" color="accent" type="submit"
                 [disabled]="!loginForm.valid">login</button>
         </mat-card-actions>
+
+        <mat-card-footer *ngIf="loading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
     </mat-card>
 </form>

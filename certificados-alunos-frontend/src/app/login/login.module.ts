@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { LoginComponent } from './login.component';
 
@@ -23,6 +24,7 @@ import { LoginComponent } from './login.component';
     ReactiveFormsModule,
     MatSnackBarModule,
     HttpClientModule,
+    MatProgressBarModule,
   ],
   exports: [
     LoginComponent,

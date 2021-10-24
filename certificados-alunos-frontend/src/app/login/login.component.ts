@@ -16,6 +16,7 @@ import { AuthService } from '../shared/auth.service';
 export class LoginComponent implements OnInit {
 
   url_login = environment.url_backend + "/login"
+  loading = false
 
   loginForm = this.formBuilder.group({
     email: ['', Validators.required],
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
+    this.loading = true
     this._snackBar.dismiss()
 
     this.authService.login({
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
         catchError(
           error => {
 
+            this.loading = false
             this._snackBar.open('erro', undefined, { panelClass: 'bg-danger' })
 
             return EMPTY
@@ -53,7 +56,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
         user => {
 
-          this._snackBar.open('autenticado por ' + user.name + '!', undefined, { panelClass: 'bg-success' })
+          this.loading = false
+          this._snackBar.open('autenticado por ' + user.name + '!', undefined, { panelClass: 'bg-success', duration: 3000 })
 
           this.router.navigate(['/'])
         }
