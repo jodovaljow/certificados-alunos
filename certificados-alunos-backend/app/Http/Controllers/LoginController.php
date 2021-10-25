@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -27,7 +28,7 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return Redirect::route('me');
+            return User::findOrFail(Auth::id())->append(['is_aluno', 'is_homologador']);;
         }
 
         return Response('', 403);
