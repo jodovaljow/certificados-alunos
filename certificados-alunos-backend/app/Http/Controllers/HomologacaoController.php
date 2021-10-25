@@ -55,13 +55,13 @@ class HomologacaoController extends Controller
         if ($certificado->homologacao) {
 
             $homologacao = $certificado->homologacao;
-            $homologacao->horas = $request->input('horas', $certificado->horas);
-            $homologacao->status = $request->input('status', $certificado->horas);
+            $homologacao->fill($request->all());
         } else {
 
             $homologacao = Homologacao::make([
                 'horas' => $request->input('horas', $certificado->horas),
                 'status' => $request->input('status', $certificado->status),
+                'mensagem' => $request->input('mensagem'),
             ]);
 
             $homologacao->certificado()->associate($certificado);

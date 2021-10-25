@@ -18,6 +18,7 @@ class CreateHomologacoesTable extends Migration
             $table->timestamps();
             $table->unsignedSmallInteger('horas');
             $table->enum('status', ['iniciado', 'homologado', 'negado'])->default('iniciado');
+            $table->string('mensagem')->nullable();
             $table->foreignId('homologador_id')
                 ->constrained('homologador')
                 ->onUpdate('cascade')

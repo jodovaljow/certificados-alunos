@@ -14,6 +14,7 @@ class Homologacao extends Model
     protected $fillable = [
         'horas',
         'status',
+        'mensagem',
     ];
 
     public function homologador()
