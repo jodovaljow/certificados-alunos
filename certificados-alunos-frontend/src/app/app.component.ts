@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { EMPTY } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+import { AuthService } from './shared/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +11,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'certificados-alunos-frontend';
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {
+
+    // TODO: FIX: REMOVE
+    this.authService.info()
+      .pipe(
+        catchError(
+          error => {
+
+            this.router.navigate(['/login'])
+
+            return EMPTY
+          }
+        ),
+      )
+      .subscribe()
+  }
 }
