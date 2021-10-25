@@ -9,7 +9,7 @@ import { AuthService } from '../shared/auth.service';
 })
 export class AlunoSelecionadoService {
 
-  private _idAlunoSelecionado$ = new BehaviorSubject<number>(0)
+  _idAlunoSelecionado$ = new BehaviorSubject<number>(0)
   idAlunoSelecionado$: Observable<number> = combineLatest([this._idAlunoSelecionado$, this.authService.user$])
     .pipe(
       map(
