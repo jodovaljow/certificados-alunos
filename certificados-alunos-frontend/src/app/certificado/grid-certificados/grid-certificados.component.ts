@@ -2,6 +2,7 @@ import { Component, Input, OnInit, SimpleChanges, } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { environment } from 'src/environments/environment';
 import { GridCertificadosService } from './grid-certificados.service';
 
 @Component({
@@ -16,6 +17,8 @@ export class GridCertificadosComponent implements OnInit {
 
   displayedColumns: string[] = ['nome', 'horas', 'tipo', 'status']
   alunoExibindo$ = this.gridCertificadosService.alunoExibindo$
+
+  url_backend_certificados: string = environment.url_backend + '/certificado/'
 
   totalHorasHomologadas$: Observable<number> = this.alunoExibindo$
     .pipe(
