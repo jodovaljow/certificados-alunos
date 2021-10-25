@@ -34,7 +34,7 @@ Route::prefix('api')->group(function () {
     Route::post('homologacao', [HomologacaoController::class, 'store'])->middleware(['api', 'web', 'can:create,' . Homologacao::class]);
 });
 
-$router->get('/[{any:.*}]', function () {
+Route::fallback(function () {
 
     return view('angular');
 });
