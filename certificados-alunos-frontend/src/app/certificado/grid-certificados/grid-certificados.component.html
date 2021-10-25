@@ -6,9 +6,15 @@
         <mat-card-subtitle class="m-1">{{alunoExibindo.user.name}} - {{alunoExibindo.user.email}}</mat-card-subtitle>
         <mat-card-subtitle class="m-1">
 
-            <ng-container *ngIf="totalHorasHomologadas$|async; let totalHorasHomologadas; else semHorasHomologadas">
+            <ng-container
+                *ngIf="totalHorasHomologadasPorTipo$|async; let totalHorasHomologadasPorTipo; else semHorasHomologadas">
 
-                total de horas homologadas: {{totalHorasHomologadas}}
+                total de horas homologadas:
+
+                <span class="badge seconday m-1" *ngFor="let horasPorTipo of totalHorasHomologadasPorTipo | keyvalue">
+
+                    {{horasPorTipo.key}}: {{horasPorTipo.value}}
+                </span>
             </ng-container>
             <ng-template #semHorasHomologadas>
 

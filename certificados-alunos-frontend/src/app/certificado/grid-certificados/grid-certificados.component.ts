@@ -20,15 +20,27 @@ export class GridCertificadosComponent implements OnInit {
 
   url_backend_certificados: string = environment.url_backend + '/certificado/'
 
-  totalHorasHomologadas$: Observable<number> = this.alunoExibindo$
+  totalHorasHomologadasPorTipo$: Observable<{ [tipo: string]: number }> = this.alunoExibindo$
     .pipe(
       map(
         aluno => {
 
           if (!aluno)
-            return 0
+            return {}
 
-          return aluno.certificados.reduce((prev, certificado) => prev + (certificado.homologacao?.status === 'homologado' ? certificado.homologacao.horas : 0), 0)
+          return aluno.certificados.reduce<{ [tipo: string]: number }>(
+            (prev, certificado) => {
+
+              if (!prev[certificado.tipo_certificado.tipo]) {
+                prev[certificado.tipo_certificado.tipo] = 0
+              }
+
+              prev[certificado.tipo_certificado.tipo] += (certificado.homologacao?.status === 'homologado' ? certificado.homologacao.horas : 0)
+
+              return prev
+            }
+            ,
+            {})
         }
       )
     )
