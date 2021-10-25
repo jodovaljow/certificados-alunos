@@ -43,7 +43,7 @@ class AlunoTest extends TestCase
             'certificados' => [],
             'user' => [
                 'id' => $aluno->id,
-                'name' => 'Jodoval Luiz dos Santos Junior',
+                'name' => 'Jodoval Luiz dos Santos Junior Aluno',
                 'email' => 'jowaluno@unit.br',
             ],
         ]);

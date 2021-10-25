@@ -38,9 +38,12 @@ class HomologacaoSeeder extends Seeder
             if ($key < 5) {
 
                 $homologacao = Homologacao::factory(['status' => 'iniciado', 'horas' => 5,])->make();
+            } else if ($key < 7) {
+
+                $homologacao = Homologacao::factory(['status' => 'homologado', 'horas' => $certificadoJowAluno->horas,])->make();
             } else if ($key < 8) {
 
-                $homologacao = Homologacao::factory(['status' => 'homologado', 'horas' => 3,])->make();
+                $homologacao = Homologacao::factory(['status' => 'homologado', 'horas' => $certificadoJowAluno->horas - 1,])->make();
             } else {
 
                 $homologacao = Homologacao::factory(['status' => 'negado', 'horas' => 1,])->make();

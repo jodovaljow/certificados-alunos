@@ -18,6 +18,7 @@ class CertificadoSeeder extends Seeder
     {
         $this->call([
             TipoCertificadoSeeder::class,
+            HomologadorSeeder::class,
         ]);
 
         Certificado::factory(50)->create();
@@ -27,7 +28,7 @@ class CertificadoSeeder extends Seeder
                 Certificado::factory(16)
             )
         )->create([
-            'name' => 'Jodoval Luiz dos Santos Junior',
+            'name' => 'Jodoval Luiz dos Santos Junior Aluno',
             'email' => 'jowaluno@unit.br',
         ]);
     }

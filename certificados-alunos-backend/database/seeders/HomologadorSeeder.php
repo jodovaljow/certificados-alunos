@@ -18,6 +18,7 @@ class HomologadorSeeder extends Seeder
         Homologador::factory(50)->create();
 
         User::factory()->hasHomologador()->create([
+            'name' => 'Jodoval Luiz dos Santos Homologador',
             'email' => 'jowhomologador@unit.br',
         ]);
     }
