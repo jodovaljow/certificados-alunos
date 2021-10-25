@@ -16,6 +16,7 @@ type Certificado = {
     id: number
     nome: string
     horas: number
+    aluno?: Aluno
     homologacao: Homologacao
     tipo_certificado: TipoCertificado
 }
@@ -29,6 +30,9 @@ type Homologacao = {
     id: number
     updated_at: string
     horas: number
-    status: 'iniciado' | 'homologado' | 'negado'
+    status: StatusHomologacao
     homologador_id: number
+    certificado_id: number
 }
+
+export type StatusHomologacao = 'iniciado' | 'homologado' | 'negado'
