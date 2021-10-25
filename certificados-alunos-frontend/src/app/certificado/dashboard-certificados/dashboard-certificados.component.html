@@ -1,0 +1,24 @@
+<ng-container *ngIf="userIsAluno$|async">
+
+    <app-enviar-certificado (onEnviado)="refreshGrid()"></app-enviar-certificado>
+</ng-container>
+
+<ng-container *ngIf="userIsHomologador$|async">
+
+    <mat-form-field class="p-2 w-100" appearance="fill">
+        <mat-label>Selecionar aluno</mat-label>
+        <input type="text" aria-label="Aluno" matInput [formControl]="formControlAlunoSelecionado"
+            [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let aluno of alunosFiltrados$ | async" [value]="aluno">
+                {{aluno.name}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</ng-container>
+
+<div class="p-2">
+
+    <app-grid-certificados [idAluno]="idAlunoSelecionado$|async" [isHomologador]="userIsHomologador$|async">
+    </app-grid-certificados>
+</div>
