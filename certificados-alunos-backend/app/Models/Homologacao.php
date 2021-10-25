@@ -11,6 +11,11 @@ class Homologacao extends Model
 
     protected $table = 'homologacoes';
 
+    protected $fillable = [
+        'horas',
+        'status',
+    ];
+
     public function homologador()
     {
         return $this->belongsTo(Homologador::class);

@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CertificadoController;
+use App\Http\Controllers\HomologacaoController;
 use App\Http\Controllers\MeController;
 use App\Http\Controllers\TipoCertificadoController;
 use App\Models\Certificado;
+use App\Models\Homologacao;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +46,6 @@ Route::prefix('api')->group(function () {
         Route::get('{certificado}', [CertificadoController::class, 'show'])->middleware('can:view,certificado');
         Route::get('{certificado}/detail', [CertificadoController::class, 'showDetail'])->middleware('can:view,certificado');
     });
+
+    Route::post('homologacao', [HomologacaoController::class, 'store'])->middleware(['api', 'web', 'can:create,' . Homologacao::class]);
 });

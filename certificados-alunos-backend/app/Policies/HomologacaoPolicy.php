@@ -41,7 +41,7 @@ class HomologacaoPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->homologador()->exists();
     }
 
     /**
