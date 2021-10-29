@@ -1,12 +1,35 @@
 <mat-toolbar color="primary">
 
-    <span>Sistema de Certificados</span>
+    <ng-container [ngSwitch]="currentScreenSize$ | async">
+        <ng-container *ngSwitchCase="'XSmall'">
 
-    <span class="spacer"></span>
+            <mat-toolbar-row>
 
-    <span class="username">{{username}}</span>
+                <span>Sistema de Certificados</span>
 
-    <button mat-icon-button class="bg-danger" aria-label="Logout" (click)="logout()">
-        <mat-icon>logout</mat-icon>
-    </button>
+                <span class="spacer"></span>
+
+                <button mat-icon-button class="bg-danger" aria-label="Logout" (click)="logout()">
+                    <mat-icon>logout</mat-icon>
+                </button>
+            </mat-toolbar-row>
+
+            <mat-toolbar-row class="usernameToolbar">
+
+                <span class="username">{{username}}</span>
+            </mat-toolbar-row>
+        </ng-container>
+        <mat-toolbar-row *ngSwitchDefault>
+
+            <span>Sistema de Certificados</span>
+
+            <span class="spacer"></span>
+
+            <span class="username">{{username}}</span>
+
+            <button mat-icon-button class="bg-danger" aria-label="Logout" (click)="logout()">
+                <mat-icon>logout</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </ng-container>
 </mat-toolbar>
