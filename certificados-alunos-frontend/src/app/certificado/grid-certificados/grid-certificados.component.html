@@ -66,6 +66,11 @@
                             <span class="badge" class="{{element.homologacao.status}}">
 
                                 {{element.homologacao.status}}
+
+                                <ng-container *ngIf="element.homologacao.status=='negado'">
+
+                                    : {{element.homologacao.mensagem}}
+                                </ng-container>
                             </span>
                         </ng-container>
                         <ng-template #naoIniciado>
